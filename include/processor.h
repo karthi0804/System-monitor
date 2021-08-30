@@ -3,7 +3,7 @@
 
 class Processor {
  public:
-  float Utilization();  // DONE: See src/processor.cpp
+  double Utilization();  // DONE: See src/processor.cpp
 
   // DONE: Declare any necessary private members
  private:

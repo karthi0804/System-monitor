@@ -35,7 +35,7 @@ vector<Process>& System::Processes() {
 void System::Set_Processes(){;
     vector<int> pids = LinuxParser::Pids();
     for (auto i : pids){
-        processes_.push_back(Process(i));
+        processes_.emplace_back(i);
     }
 }
 
