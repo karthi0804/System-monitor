@@ -5,6 +5,7 @@
 #include <vector>
 #include <cmath>
 #include <iostream>
+#include <iomanip>
 
 #include "linux_parser.h"
 
@@ -176,14 +177,13 @@ string LinuxParser::Command(int pid) {
 string LinuxParser::Ram(int pid) {
   std::ifstream filestream(kProcDirectory + std::to_string(pid) + kStatusFilename);
   std::string line, key, value;
-  std::ostringstream ram;
-  ram.precision(2);
+  std::ostringstream ram{"0.0"};  // default value
   if (filestream.is_open()){
     while(std::getline(filestream, line)){
       std::istringstream linestream(line);
       while(linestream >> key >> value){
         if(key == "VmSize:"){          
-          ram << std::fixed << std::stof(value)*0.001;
+          ram << std::fixed << std::setprecision(2) << std::stof(value)*0.001;
         }
       }
     }
